@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кредитный калькулятор</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Кредитный калькулятор</h1>
+<form id="form">
+    <label for="creditSum">Сумма кредита(руб.):</label>
+    <input type="number" id="creditSum" min="0" step="1" placeholder="Введите сумму кредита" required/>
+
+    <label for="CurrencyChange">Выбор валюты:</label>
+    <select id="CurrencyChange">
+        <option selected value="RUB">₽</option>
+        <option value="USD">$</option>
+        <option value="EUR">€</option>
+        <option value="GBP">£</option>
+        <option value="CNY">¥</option>
+        <option value="KZT">₸</option>
+    </select>
+
+    <label for="interestRate">Процентная ставка %:</label>
+    <input  type="number"  id="interestRate"  min="0.01" max="100" step="0.01" placeholder="Введите процентную ставку" required />
+
+    <label for="creditTerm">Срок кредита(в месяцах): </label>
+    <input type="number" id="creditTerm" min="1"  required/>
+
+    <button type="button">Рассчитать</button>
+</form>
+
+<div id="res" class="result" >
+<h2>Результаты</h2>
+<p>Ежемесячный платёж(в рублях): <span id="monthPayment"></span></p>
+<p>Итоговая стоимость кредита(в рублях): <span id="totalSum" ></span></p>
+<p>Ежемесячный платёж(в валюте): <span id="monthPaymentCurrency" ></span></p>
+<p>Итоговая стоимость кредита(в валюте): <span id="totalSumCurrency"></span> </p>
+</div>
+</body>
+<script src="index.js"></script>
+</html>
