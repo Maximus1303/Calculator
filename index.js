@@ -41,13 +41,23 @@ function calculateCredit() {
             const exchangeRate = yield getCurrency(currencyChange);
             const monthPaymentCurrency = monthPayment * exchangeRate;
             const totalCoastCreditCurrency = totalCoastCredit * exchangeRate;
+            const convertTotalCurrency = totalCoastCredit / exchangeRate;
+            const convertMonthPaymentCurrency = monthPayment / exchangeRate;
             const format = (num) => {
                 return num.toLocaleString('ru-RU');
             };
-            document.getElementById("monthPayment").textContent = `${format(Math.round(monthPayment))} RUB`;
-            document.getElementById("totalSum").textContent = `${format(Math.round(totalCoastCredit))} RUB`;
-            document.getElementById("monthPaymentCurrency").textContent = `${format(Number(monthPaymentCurrency.toFixed(2)))} ${currencyChange}`;
-            document.getElementById("totalSumCurrency").textContent = `${format(Number(totalCoastCreditCurrency.toFixed(2)))} ${currencyChange}`;
+            if (currencyChange === 'RUB') {
+                document.getElementById("monthPayment").textContent = `${format(Math.round(monthPayment))} RUB`;
+                document.getElementById("totalSum").textContent = `${format(Math.round(totalCoastCredit))} RUB`;
+                document.getElementById("monthPaymentCurrency").textContent = `${format(Math.round(monthPaymentCurrency))} ${currencyChange}`;
+                document.getElementById("totalSumCurrency").textContent = `${format(Math.round(totalCoastCreditCurrency))} ${currencyChange}`;
+            }
+            else {
+                document.getElementById("monthPayment").textContent = `${format(Math.round(convertMonthPaymentCurrency))} RUB`;
+                document.getElementById("totalSum").textContent = `${format(Math.round(convertTotalCurrency))} RUB`;
+                document.getElementById("monthPaymentCurrency").textContent = `${format(Math.round(monthPayment))} ${currencyChange}`;
+                document.getElementById("totalSumCurrency").textContent = `${format(Math.round(totalCoastCredit))} ${currencyChange}`;
+            }
         }
         catch (error) {
             alert("Ошибка при получении валют");
@@ -55,3 +65,4 @@ function calculateCredit() {
         }
     });
 }
+
